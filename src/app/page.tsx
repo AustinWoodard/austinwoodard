@@ -283,8 +283,9 @@ const CreativeArtistic = () => (
 
 // Design 6: Original Stone Theme (Your original design)
 const OriginalStone = () => (
-  <div className="min-h-screen bg-stone-900 text-stone-100 flex flex-col items-center justify-center px-4">
-    <main className="flex-1 flex flex-col items-center justify-center text-center max-w-4xl w-full">
+  <div className="min-h-screen bg-stone-900 text-stone-100">
+    <div className="max-w-4xl mx-auto px-4 py-16">
+      <main className="flex flex-col items-center text-center w-full">
       {/* Large responsive name text */}
       <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl mb-8 sm:mb-12 leading-tight font-[family-name:var(--font-alfa-slab-one)] text-center text-stone-50">
         {websiteData.name}
@@ -326,13 +327,14 @@ const OriginalStone = () => (
             ))}
           </nav>
         </div>
-      </section>
-    </main>
-    
-    {/* Footer */}
-    <footer className="pb-6 pt-12 text-center text-stone-500 text-sm">
-      <p>&copy; {new Date().getFullYear()} Austin J. Woodard. All rights reserved. Keep it groovy. ✌️</p>
-    </footer>
+        </section>
+      </main>
+      
+      {/* Footer */}
+      <footer className="pt-12 text-center text-stone-500 text-sm">
+        <p>&copy; {new Date().getFullYear()} Austin J. Woodard. All rights reserved. Keep it groovy. ✌️</p>
+      </footer>
+    </div>
   </div>
 );
 
