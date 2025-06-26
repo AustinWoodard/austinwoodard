@@ -106,7 +106,7 @@ const firaCode = Fira_Code({
 
 export const metadata: Metadata = {
   title: "Austin J. Woodard",
-  description: "Personal website of Austin J. Woodard",
+  description: "I'm a maker of things.",
 };
 
 export default function RootLayout({
