@@ -9,6 +9,8 @@ const socialRedirects: Record<string, string> = {
   x: 'https://x.com/NoxileMusic',
   twitter: 'https://x.com/NoxileMusic', // Alternative subdomain for X
   soundcloud: 'https://soundcloud.com/noxile',
+  spotify: 'https://open.spotify.com/user/austinjwoodard?si=a5f887676a844809',
+  austism: 'https://open.spotify.com/playlist/2nMsI1wKIB1svXEOB3uyQr?si=4e15fb4e62c44098'
 }
 
 export function middleware(request: NextRequest) {
