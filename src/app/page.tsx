@@ -393,7 +393,7 @@ export default function Home() {
   if (selectedDesign === null) {
     return (
       <div className="min-h-screen bg-gray-900 flex items-center justify-center">
-        <div className="text-white text-xl">Loading...</div>
+        <div className="text-white text-xl"></div>
       </div>
     );
   }
