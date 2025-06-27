@@ -81,7 +81,7 @@ const ElegantLuxury = () => (
         </header>
 
         <section className="mb-28">
-          <h2 className="text-4xl font-[family-name:var(--font-cinzel)] text-center mb-16 text-yellow-400">Portfolio</h2>
+          <h2 className="text-2xl font-[family-name:var(--font-cinzel)] text-center mb-16 text-yellow-400">Projects I&apos;ve Worked On</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {websiteData.websites.map((site, i) => (
               <a key={i} href={site.url} target="_blank" rel="noopener noreferrer"
@@ -94,7 +94,7 @@ const ElegantLuxury = () => (
         </section>
 
         <section className="mb-20">
-          <h2 className="text-4xl font-[family-name:var(--font-cinzel)] text-center mb-16 text-yellow-400">Connect</h2>
+          <h2 className="text-2xl font-[family-name:var(--font-cinzel)] text-center mb-16 text-yellow-400">Connect</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {websiteData.socials.map((social, i) => (
               <a key={i} href={social.url} target="_blank" rel="noopener noreferrer"
@@ -123,13 +123,13 @@ const FuturisticTech = () => (
           &gt; {websiteData.name.toUpperCase()} &lt;
         </h1>
         <div className="text-green-500 font-[family-name:var(--font-fira-code)] text-sm">
-          [ WEB_DEVELOPER_PORTFOLIO.EXE ]
+          [ WEB_DEVELOPER_PORTFOLIO.js ]
         </div>
       </header>
 
       <section className="mb-20">
         <h2 className="text-2xl mb-12 text-green-300 font-[family-name:var(--font-fira-code)]">
-          ~/projects$ ls -la
+          cd ~/projects &amp;&amp; ls -la
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {websiteData.websites.map((site, i) => (
@@ -144,7 +144,7 @@ const FuturisticTech = () => (
 
       <section className="mb-20">
         <h2 className="text-2xl mb-12 text-green-300 font-[family-name:var(--font-fira-code)]">
-          ~/social$ connect --all
+          cd ~/social &amp;&amp; connect --all
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
           {websiteData.socials.map((social, i) => (
@@ -348,13 +348,45 @@ export default function Home() {
     FuturisticTech,
     RetroVintage,
     CreativeArtistic,
-    OriginalStone
+    OriginalStone,
   ];
 
   useEffect(() => {
-    // Randomly select a design on component mount
-    const randomDesign = Math.floor(Math.random() * designs.length);
-    setSelectedDesign(randomDesign);
+    // Check if localStorage is available (client-side only)
+    if (typeof window !== 'undefined' && window.localStorage) {
+      try {
+        // Get seen designs from localStorage
+        const seenDesigns = JSON.parse(localStorage.getItem('seenDesigns') || '[]');
+        
+        // If all designs have been seen, reset the array
+        if (seenDesigns.length >= designs.length) {
+          localStorage.setItem('seenDesigns', '[]');
+          seenDesigns.length = 0;
+        }
+        
+        // Get indices of unseen designs
+        const unseenDesigns = designs.map((_, index) => index).filter(index => !seenDesigns.includes(index));
+        
+        // Pick random design from unseen ones
+        const randomUnseenIndex = Math.floor(Math.random() * unseenDesigns.length);
+        const selectedDesignIndex = unseenDesigns[randomUnseenIndex];
+        
+        // Add this design to seen designs
+        seenDesigns.push(selectedDesignIndex);
+        localStorage.setItem('seenDesigns', JSON.stringify(seenDesigns));
+        
+        setSelectedDesign(selectedDesignIndex);
+      } catch {
+        // Fallback to random selection if localStorage fails
+        console.warn('localStorage not available, using random selection');
+        const randomDesign = Math.floor(Math.random() * designs.length);
+        setSelectedDesign(randomDesign);
+      }
+    } else {
+      // Fallback for SSR or when localStorage is not available
+      const randomDesign = Math.floor(Math.random() * designs.length);
+      setSelectedDesign(randomDesign);
+    }
   }, []);
 
   // Show loading or placeholder while design is being selected
