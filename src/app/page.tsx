@@ -6,8 +6,10 @@ import { useEffect, useState } from 'react';
 const websiteData = {
   name: "Austin J. Woodard",
   websites: [
+    { name: "A-Z Productions", url: "https://azlightsandsound.com" },
     { name: "memeSRC", url: "https://memeSRC.com" },
     { name: "Fiber Gaming Network", url: "https://fibergamingnetwork.com" },
+    { name: "Aden Webb", url: "https://adenwebb.com" },
     { name: "Local Focal", url: "https://local-focal.com" },
     { name: "WCRS Radio", url: "http://wlmawcrsradio.com" }
   ],
